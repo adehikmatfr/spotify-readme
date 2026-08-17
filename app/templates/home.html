@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Spotify Readme Widgets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #ffffff;
+            --text: #24292f;
+            --muted: #57606a;
+            --accent: #1DB954;
+            --border: #d0d7de;
+            --code-bg: #f6f8fa;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0d1117;
+                --text: #e6edf3;
+                --muted: #8b949e;
+                --border: #30363d;
+                --code-bg: #161b22;
+            }
+        }
+        body {
+            margin: 0;
+            padding: 2.5rem 1.5rem;
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+        main {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin: 0 0 0.25rem;
+        }
+        .subtitle {
+            color: var(--muted);
+            margin: 0 0 2rem;
+        }
+        h2 {
+            font-size: 1rem;
+            margin: 2rem 0 0.75rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        th {
+            color: var(--muted);
+            font-weight: 600;
+        }
+        code {
+            background: var(--code-bg);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            overflow-x: auto;
+            font-size: 0.85rem;
+        }
+        img.preview {
+            max-width: 100%;
+            margin-top: 0.5rem;
+        }
+        a {
+            color: var(--accent);
+        }
+        footer {
+            margin-top: 2.5rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Spotify Readme Widgets</h1>
+        <p class="subtitle">Live Spotify SVG widgets for embedding in a GitHub README.</p>
+
+        <h2>Endpoints</h2>
+        <table>
+            <tr><th>Path</th><th>Shows</th></tr>
+            <tr><td><code>/api</code></td><td>Currently playing (or most recent) track, with a progress bar</td></tr>
+            <tr><td><code>/api/top</code></td><td>Top 5 tracks over the last ~4 weeks</td></tr>
+            <tr><td><code>/api/recent</code></td><td>Last 5 played tracks</td></tr>
+        </table>
+
+        <h2>Customization</h2>
+        <table>
+            <tr><th>Param</th><th>Effect</th></tr>
+            <tr><td><code>theme</code></td><td><code>light</code> (default) or <code>dark</code></td></tr>
+            <tr><td><code>bg</code></td><td>Background hex color, e.g. <code>bg=1a1a1a</code></td></tr>
+            <tr><td><code>bars</code></td><td>Number of EQ bars, 4-20 (<code>/api</code> only)</td></tr>
+        </table>
+
+        <h2>Embed</h2>
+        <pre><code>&lt;img src="{{ base_url }}api" alt="Current Spotify Song"&gt;</code></pre>
+        <img class="preview" src="{{ base_url }}api" alt="Current Spotify Song">
+
+        <footer>
+            Source &amp; setup instructions: <a href="https://github.com/adehikmatfr/spotify-readme">github.com/adehikmatfr/spotify-readme</a>
+        </footer>
+    </main>
+</body>
+</html>

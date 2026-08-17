@@ -1,4 +1,4 @@
-from flask import Flask, Response, request
+from flask import Flask, Response, render_template, request
 
 from .config import TEMPLATES_DIR
 from .widgets import now_playing, recently_played, top_tracks
@@ -14,6 +14,10 @@ def create_app():
         resp.headers["Cache-Control"] = CACHE_CONTROL
         return resp
 
+    @app.route("/")
+    def home():
+        return render_template("home.html", base_url=request.host_url)
+
     @app.route("/api/top")
     def top_tracks_widget():
         return _svg_response(top_tracks.render(request.args))
@@ -22,7 +26,6 @@ def create_app():
     def recently_played_widget():
         return _svg_response(recently_played.render(request.args))
 
-    @app.route("/", defaults={"path": ""})
     @app.route("/<path:path>")
     def now_playing_widget(path):
         return _svg_response(now_playing.render(request.args))
