@@ -1,0 +1,84 @@
+<svg width="500" height="{{ height }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <foreignObject width="500" height="{{ height }}">
+        <div xmlns="http://www.w3.org/1999/xhtml" class="container">
+            <style>
+                html, body, div, span, p, img {
+                    margin: 0;
+                    padding: 0;
+                    border: 0;
+                    font-size: 100%;
+                    font: inherit;
+                }
+                .container {
+                    {% if background %}background-color: {{ background }};{% endif %}
+                    border-radius: 5px;
+                    padding: 8px 10px;
+                    box-sizing: border-box;
+                    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+                }
+                .header {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    margin-bottom: 6px;
+                }
+                .logo {
+                    width: 16px;
+                    height: 16px;
+                }
+                .title {
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: {{ accent_color }};
+                }
+                .row {
+                    display: flex;
+                    align-items: baseline;
+                    gap: 6px;
+                    padding: 3px 0;
+                }
+                .rank {
+                    font-size: 12px;
+                    color: {{ muted_color }};
+                    width: 14px;
+                }
+                .song {
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: {{ text_color }};
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 260px;
+                }
+                .artist {
+                    font-size: 11px;
+                    color: {{ muted_color }};
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 180px;
+                }
+                .empty {
+                    font-size: 12px;
+                    color: {{ muted_color }};
+                }
+            </style>
+            <div class="header">
+                <img class="logo" src="data:image/png;base64, {{ logo }}" alt="Spotify Logo" />
+                <span class="title">{{ title }}</span>
+            </div>
+            {% if tracks %}
+                {% for track in tracks %}
+                <div class="row">
+                    <span class="rank">{{ loop.index }}.</span>
+                    <span class="song">{{ track.song }}</span>
+                    {% if track.artist %}<span class="artist">{{ track.artist }}</span>{% endif %}
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty">Nothing to show right now.</div>
+            {% endif %}
+        </div>
+    </foreignObject>
+</svg>
